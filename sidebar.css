@@ -1,3 +1,5 @@
+/* /Users/tandreu/StudioProjects/NewArche/sidebar.css */
+
 /* Thème clair (défaut) */
 :root {
   --color-background: #f8f9fa;
@@ -132,33 +134,77 @@ html, body {
 }
 
 /* Titres de section */
+/* Style générique pour tous les titres de section, qui est ensuite surchargé */
 .newarche-section-title {
   padding: 12px;
-  background-color: var(--color-background);
-  border-bottom: 1px solid var(--color-border);
   font-weight: 600;
   color: var(--color-text-secondary);
   display: flex;
-  justify-content: space-between;
   align-items: center;
   font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   flex-shrink: 0;
 }
 
-.newarche-section-title button {
-  padding: 2px 8px;
-  background: var(--color-accent);
-  color: var(--color-accent-text);
-  border: none;
+/* STYLE PARTAGÉ pour les en-têtes de section cliquables */
+#bookmarks-header,
+#tabs-header {
+  margin: 2px 4px;
+  padding: 8px 12px;
   border-radius: 4px;
+  background-color: var(--color-background-tertiary);
+  color: var(--color-text);
+  font-weight: 500;
   cursor: pointer;
-  font-size: 14px;
+  transition: background-color 0.2s;
 }
-.newarche-section-title button:hover {
-  background: var(--color-accent-hover);
+
+#bookmarks-header {
+  justify-content: flex-start;
+  gap: 8px;
 }
+
+#tabs-header {
+  justify-content: flex-start; /* Aligne les items à gauche */
+  gap: 8px; /* Ajoute un espace entre l'icône et le texte */
+}
+
+#bookmarks-header:hover,
+#tabs-header:hover {
+  background-color: var(--color-background-secondary);
+}
+
+/* Style de l'icône "+" */
+.add-icon {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.chevron::before {
+  content: '▼'; /* Flèche vers le bas par défaut */
+  font-size: 10px;
+  color: var(--color-text-secondary);
+  padding: 4px;
+  display: inline-block;
+  width: 1em;
+  text-align: center;
+}
+
+/* STYLES POUR L'ÉTAT PLIÉ */
+.newarche-bookmarks-container.collapsed {
+  height: auto !important;
+  flex-shrink: 0;
+}
+
+.newarche-bookmarks-container.collapsed .chevron::before {
+  content: '►'; /* Flèche vers la droite quand plié */
+}
+
+.newarche-bookmarks-container.collapsed > .newarche-bookmarks,
+.newarche-bookmarks-container.collapsed ~ #newarche-resizer {
+  display: none;
+}
+
 
 /* Listes */
 .newarche-bookmarks,
