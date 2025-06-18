@@ -1,3 +1,5 @@
+// /Users/tandreu/StudioProjects/NewArche/sidebar.js
+
 // --- Références aux éléments du DOM ---
 const sidebarElement = document.getElementById('newarche-sidebar');
 const navBackBtn = document.getElementById('nav-back');
@@ -9,6 +11,7 @@ const bookmarksList = document.getElementById('newarche-bookmarks');
 const tabsList = document.getElementById('newarche-tabs');
 const resizer = document.getElementById('newarche-resizer');
 const bookmarksContainer = document.querySelector('.newarche-bookmarks-container');
+const bookmarksHeader = document.getElementById('bookmarks-header');
 
 
 // --- GESTION DU THÈME (CORRIGÉE AVEC L'APPROCHE HYBRIDE) ---
@@ -65,8 +68,16 @@ async function initialize() {
     // On lance la mise à jour du thème sans attendre pour ne pas bloquer le reste.
     updateTheme();
     
-    const data = await browser.storage.local.get('bookmarkHeight');
+    const data = await browser.storage.local.get(['bookmarkHeight', 'bookmarksCollapsed']);
+    
+    // Appliquer la hauteur sauvegardée
     bookmarksContainer.style.height = `${data.bookmarkHeight || 50}%`;
+    
+    // Appliquer l'état plié/déplié sauvegardé
+    if (data.bookmarksCollapsed) {
+        bookmarksContainer.classList.add('collapsed');
+    }
+    
     attachEventListeners();
     await refreshAllLists();
 }
@@ -77,6 +88,9 @@ function attachEventListeners() {
     // On écoute les deux types de changements de thème.
     browser.theme.onUpdated.addListener(updateTheme);
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+
+    // Ajout de l'écouteur pour plier/déplier les favoris
+    bookmarksHeader.addEventListener('click', toggleBookmarks);
 
     navBackBtn.addEventListener('click', async () => {
         const [activeTab] = await browser.tabs.query({ active: true, currentWindow: true });
@@ -119,6 +133,12 @@ function attachEventListeners() {
     browser.bookmarks.onRemoved.addListener(debouncedRefresh);
     
     initializeResizer();
+}
+
+// --- Nouvelle fonction pour gérer le pliage des favoris ---
+async function toggleBookmarks() {
+    const isCollapsed = bookmarksContainer.classList.toggle('collapsed');
+    await browser.storage.local.set({ bookmarksCollapsed: isCollapsed });
 }
 
 

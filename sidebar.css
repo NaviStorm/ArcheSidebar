@@ -1,3 +1,5 @@
+/* /Users/tandreu/StudioProjects/NewArche/sidebar.css */
+
 /* Thème clair (défaut) */
 :root {
   --color-background: #f8f9fa;
@@ -146,6 +148,57 @@ html, body {
   letter-spacing: 0.5px;
   flex-shrink: 0;
 }
+
+/* NOUVEAUX STYLES POUR LE TITRE DES FAVORIS */
+#bookmarks-header {
+  margin: 2px 4px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border-bottom: none;
+  background-color: var(--color-background-tertiary);
+  color: var(--color-text);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  /* MODIFICATION : Ajustement des propriétés flex pour l'alignement à gauche */
+  display: flex;
+  justify-content: flex-start; /* Aligne les items au début */
+  align-items: center;
+  gap: 8px; /* Ajoute un espace entre le chevron et le texte */
+}
+
+#bookmarks-header:hover {
+  background-color: var(--color-background-secondary);
+}
+
+.chevron::before {
+  content: '▼'; /* Flèche vers le bas par défaut */
+  font-size: 10px;
+  color: var(--color-text-secondary);
+  padding: 4px;
+  display: inline-block; /* Pour un meilleur contrôle de l'alignement */
+  width: 1em; /* Assure une largeur constante */
+  text-align: center;
+}
+
+/* STYLES POUR L'ÉTAT PLIÉ */
+.newarche-bookmarks-container.collapsed {
+  height: auto !important; /* Important pour outrepasser le style en ligne JS */
+  flex-shrink: 0;
+}
+
+.newarche-bookmarks-container.collapsed .chevron::before {
+  content: '►'; /* Flèche vers la droite quand plié */
+}
+
+.newarche-bookmarks-container.collapsed > .newarche-bookmarks,
+.newarche-bookmarks-container.collapsed ~ #newarche-resizer {
+  display: none;
+}
+/* FIN DES NOUVEAUX STYLES */
+
 
 .newarche-section-title button {
   padding: 2px 8px;
