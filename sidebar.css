@@ -1,0 +1,267 @@
+/* Thème clair (défaut) */
+:root {
+  --color-background: #f8f9fa;
+  --color-background-secondary: #e9ecef;
+  --color-background-tertiary: #FFFFFF;
+  --color-text: #202124;
+  --color-text-secondary: #5f6368;
+  --color-border: #dee2e6;
+  --color-accent: #007bff;
+  --color-accent-text: #FFFFFF;
+  --color-accent-hover: #0056b3;
+}
+
+/* Thème sombre appliqué via une classe gérée par JavaScript */
+body.theme-dark {
+  --color-background: #202124;
+  --color-background-secondary: #3c4043;
+  --color-background-tertiary: #2a2c2f;
+  --color-text: #e8eaed;
+  --color-text-secondary: #9aa0a6;
+  --color-border: #5f6368;
+  --color-accent: #8ab4f8;
+  --color-accent-text: #202124;
+  --color-accent-hover: #a3c5f9;
+}
+
+body.theme-clair {
+  --color-background: #f8f9fa;
+  --color-background-secondary: #e9ecef;
+  --color-background-tertiary: #FFFFFF;
+  --color-text: #202124;
+  --color-text-secondary: #5f6368;
+  --color-border: #dee2e6;
+  --color-accent: #007bff;
+  --color-accent-text: #FFFFFF;
+  --color-accent-hover: #0056b3;
+}
+
+
+/* Base et layout */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+.newarche-sidebar {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-background);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Barre de navigation supérieure */
+.newarche-top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  background-color: var(--color-background-secondary);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.top-nav-group-left, .top-nav-group-right {
+    flex: 1;
+}
+.top-nav-group-center {
+    display: flex;
+    gap: 4px;
+}
+
+.nav-button {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+}
+.nav-button:hover {
+  background-color: var(--color-border);
+  color: var(--color-text);
+}
+
+/* Barre d'URL */
+.newarche-url-bar {
+  display: flex;
+  padding: 8px 12px;
+  gap: 8px;
+  background-color: var(--color-background-tertiary);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.newarche-url-bar input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+.newarche-url-bar input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent) 25%, transparent);
+}
+
+/* Conteneurs de listes */
+.newarche-bookmarks-container,
+.newarche-tabs-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--color-background-tertiary);
+}
+
+.newarche-tabs-container {
+  flex: 1;
+}
+
+/* Titres de section */
+.newarche-section-title {
+  padding: 12px;
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.newarche-section-title button {
+  padding: 2px 8px;
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.newarche-section-title button:hover {
+  background: var(--color-accent-hover);
+}
+
+/* Listes */
+.newarche-bookmarks,
+.newarche-tabs {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+/* Items de liste */
+.newarche-bookmark-item,
+.newarche-tab-item {
+  display: flex;
+  align-items: center;
+  margin: 2px 0;
+  border-radius: 4px;
+  position: relative;
+}
+
+.newarche-bookmark-content,
+.newarche-tab-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.newarche-bookmark-content:hover,
+.newarche-tab-content:hover {
+  background-color: var(--color-background-secondary);
+}
+
+/* Styles pour les états actifs */
+.newarche-bookmark-item.active-bookmark .newarche-bookmark-content {
+  background-color: var(--color-background-secondary);
+  font-weight: 500;
+}
+.newarche-bookmark-item.active .newarche-bookmark-content,
+.newarche-tab-item.active .newarche-tab-content {
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
+}
+
+.newarche-favicon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.newarche-bookmark-title,
+.newarche-tab-title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+}
+
+/* Bouton de fermeture */
+.newarche-close-tab {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 14px;
+  margin-left: 4px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.newarche-close-tab:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.newarche-bookmark-item.active .newarche-close-tab,
+.newarche-tab-item.active .newarche-close-tab {
+  color: color-mix(in srgb, var(--color-accent-text) 80%, transparent);
+}
+.newarche-bookmark-item.active .newarche-close-tab:hover,
+.newarche-tab-item.active .newarche-close-tab:hover {
+  background-color: color-mix(in srgb, var(--color-accent-text) 20%, transparent);
+  color: var(--color-accent-text);
+}
+
+/* Redimensionneur */
+.newarche-resizer {
+  height: 4px;
+  background-color: var(--color-border);
+  cursor: ns-resize;
+  position: relative;
+  flex-shrink: 0;
+}
+.newarche-resizer:hover {
+  background-color: var(--color-text-secondary);
+}

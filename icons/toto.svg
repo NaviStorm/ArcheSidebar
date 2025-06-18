@@ -1,0 +1,18 @@
+<svg width="128" height="128" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+  <!-- 
+    Note : Le viewBox de 96x96 est conservé. 
+    Cela permet de réutiliser les mêmes coordonnées que l'icône 96x96,
+    le SVG s'adapte automatiquement à la nouvelle taille de 128x128.
+  -->
+
+  <!-- Fond de la fenêtre du navigateur -->
+  <rect width="96" height="96" rx="16" fill="#4A4A4A"/>
+  
+  <!-- Volet latéral -->
+  <path d="M0 16C0 7.16344 7.16344 0 16 0H36V96H16C7.16344 96 0 88.8366 0 80V16Z" fill="#00A0E9"/>
+  
+  <!-- Lignes représentant le contenu de la liste -->
+  <rect x="8" y="24" width="20" height="4" rx="2" fill="white"/>
+  <rect x="8" y="46" width="20" height="4" rx="2" fill="white"/>
+  <rect x="8" y="68" width="20" height="4" rx="2" fill="white"/>
+</svg>

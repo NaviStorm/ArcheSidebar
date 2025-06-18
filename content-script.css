@@ -1,0 +1,17 @@
+#sidebar-hover-trigger-left,
+#sidebar-hover-trigger-right {
+    position: fixed;
+    top: 0;
+    width: 5px;
+    height: 100vh;
+    background-color: transparent;
+    z-index: 2147483647;
+}
+
+#sidebar-hover-trigger-left {
+    left: 0;
+}
+
+#sidebar-hover-trigger-right {
+    right: 0;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="sidebar.css"/>
+</head>
+<body>
+    <div id="newarche-sidebar" class="newarche-sidebar">
+      
+      <!-- Barre de navigation simplifiée -->
+      <div class="newarche-top-nav">
+        <!-- Le bouton pour masquer est retiré -->
+        <div class="top-nav-group-left"></div> <!-- Espace réservé pour l'équilibre visuel -->
+        <div class="top-nav-group-center">
+          <button id="nav-back" class="nav-button" title="Précédent">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"/></svg>
+          </button>
+          <button id="nav-forward" class="nav-button" title="Suivant">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
+          </button>
+          <button id="nav-reload" class="nav-button" title="Actualiser">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.44,6 14.75,6.5 15.84,7.4L13,10H20V3L17.65,6.35Z"/></svg>
+          </button>
+        </div>
+        <div class="top-nav-group-right"></div> <!-- Espace réservé -->
+      </div>
+      
+      <div class="newarche-url-bar">
+        <input type="text" id="newarche-url-input" placeholder="Entrez une URL ou une recherche...">
+        <!-- Le bouton "Go" est retiré -->
+      </div>
+      
+      <div class="newarche-bookmarks-container">
+        <div class="newarche-section-title">Favoris</div>
+        <div class="newarche-bookmarks" id="newarche-bookmarks"><div class="newarche-loading">Chargement...</div></div>
+      </div>
+      
+      <div class="newarche-resizer" id="newarche-resizer"></div>
+      
+      <div class="newarche-tabs-container">
+        <div class="newarche-section-title">Onglets <button id="newarche-new-tab" title="Nouvel onglet">+</button></div>
+        <div class="newarche-tabs" id="newarche-tabs"><div class="newarche-loading">Chargement...</div></div>
+      </div>
+    </div>
+    <script src="sidebar.js"></script>
+</body>
+</html>
