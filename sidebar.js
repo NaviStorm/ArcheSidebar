@@ -6,12 +6,12 @@ const navBackBtn = document.getElementById('nav-back');
 const navForwardBtn = document.getElementById('nav-forward');
 const navReloadBtn = document.getElementById('nav-reload');
 const urlInput = document.getElementById('newarche-url-input');
-const newTabBtn = document.getElementById('newarche-new-tab');
 const bookmarksList = document.getElementById('newarche-bookmarks');
 const tabsList = document.getElementById('newarche-tabs');
 const resizer = document.getElementById('newarche-resizer');
 const bookmarksContainer = document.querySelector('.newarche-bookmarks-container');
 const bookmarksHeader = document.getElementById('bookmarks-header');
+const tabsHeader = document.getElementById('tabs-header'); // Nouvelle référence
 
 
 // --- GESTION DU THÈME (CORRIGÉE AVEC L'APPROCHE HYBRIDE) ---
@@ -121,7 +121,8 @@ function attachEventListeners() {
     };
     urlInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') navigate(); });
 
-    newTabBtn.addEventListener('click', () => browser.tabs.create({}));
+    // Remplacement de l'ancien bouton par le nouvel en-tête cliquable
+    tabsHeader.addEventListener('click', () => browser.tabs.create({}));
 
     const debouncedRefresh = debounce(refreshAllLists, 150);
     browser.tabs.onUpdated.addListener(debouncedRefresh);
@@ -282,7 +283,7 @@ async function displayTabs(appState, allTabs) {
 function isValidHttpUrl(string) {
     try {
         const url = new URL(string);
-        return url.protocol === "http:" || url.protocol === "https:";
+        return url.protocol === "http:" || url.protocol === "https:"
     } catch (_) {
         return false;
     }

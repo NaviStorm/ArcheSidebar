@@ -134,43 +134,50 @@ html, body {
 }
 
 /* Titres de section */
+/* Style générique pour tous les titres de section, qui est ensuite surchargé */
 .newarche-section-title {
   padding: 12px;
-  background-color: var(--color-background);
-  border-bottom: 1px solid var(--color-border);
   font-weight: 600;
   color: var(--color-text-secondary);
   display: flex;
-  justify-content: space-between;
   align-items: center;
   font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   flex-shrink: 0;
 }
 
-/* NOUVEAUX STYLES POUR LE TITRE DES FAVORIS */
-#bookmarks-header {
+/* STYLE PARTAGÉ pour les en-têtes de section cliquables */
+#bookmarks-header,
+#tabs-header {
   margin: 2px 4px;
   padding: 8px 12px;
   border-radius: 4px;
-  border-bottom: none;
   background-color: var(--color-background-tertiary);
   color: var(--color-text);
   font-weight: 500;
-  text-transform: none;
-  letter-spacing: normal;
   cursor: pointer;
   transition: background-color 0.2s;
-  /* MODIFICATION : Ajustement des propriétés flex pour l'alignement à gauche */
-  display: flex;
-  justify-content: flex-start; /* Aligne les items au début */
-  align-items: center;
-  gap: 8px; /* Ajoute un espace entre le chevron et le texte */
 }
 
-#bookmarks-header:hover {
+#bookmarks-header {
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+#tabs-header {
+  justify-content: flex-start; /* Aligne les items à gauche */
+  gap: 8px; /* Ajoute un espace entre l'icône et le texte */
+}
+
+#bookmarks-header:hover,
+#tabs-header:hover {
   background-color: var(--color-background-secondary);
+}
+
+/* Style de l'icône "+" */
+.add-icon {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
 }
 
 .chevron::before {
@@ -178,14 +185,14 @@ html, body {
   font-size: 10px;
   color: var(--color-text-secondary);
   padding: 4px;
-  display: inline-block; /* Pour un meilleur contrôle de l'alignement */
-  width: 1em; /* Assure une largeur constante */
+  display: inline-block;
+  width: 1em;
   text-align: center;
 }
 
 /* STYLES POUR L'ÉTAT PLIÉ */
 .newarche-bookmarks-container.collapsed {
-  height: auto !important; /* Important pour outrepasser le style en ligne JS */
+  height: auto !important;
   flex-shrink: 0;
 }
 
@@ -197,21 +204,7 @@ html, body {
 .newarche-bookmarks-container.collapsed ~ #newarche-resizer {
   display: none;
 }
-/* FIN DES NOUVEAUX STYLES */
 
-
-.newarche-section-title button {
-  padding: 2px 8px;
-  background: var(--color-accent);
-  color: var(--color-accent-text);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-}
-.newarche-section-title button:hover {
-  background: var(--color-accent-hover);
-}
 
 /* Listes */
 .newarche-bookmarks,
